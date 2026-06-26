@@ -174,7 +174,13 @@ class JDXGeneratePrompt:
     FUNCTION = "execute"
     CATEGORY = "JDXGenerator"
 
+    @classmethod
+    def IS_CHANGED(s, **kwargs):
+        # Force re-evaluation on every generation to ensure random/procedural prompts switch every time
+        return float("NaN")
+
     def execute(self, jdx_config):
+
         cfg = copy.deepcopy(jdx_config)
         
         # Build prompt extracts exactly what it needs from the config dictionary
